@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup Page</title>
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+            background-color: rgb(229,228,226);
+        }
+        h1 {
+            width:500px;
+            color:honeydew;
+            font-family:math;
+            margin: 0 auto;
+            background: gray;
+            text-align: center;
+            }
+        h3 {
+            color:navy;
+            font-family:math;
+            margin: 0 auto;
+            text-align: center;
+           
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        input[type="text"], input[type="password"], [type='email']{
+            display: block;
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .toggle-btn {
+            margin-top: 10px;
+            text-align: center;
+            cursor: pointer;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<div class="main">
+
+    <div class="main_tag">
+        <h1>WELCOME TO <br><span>UNIMTECH LIBRARY</span></h1>
+        <h3> "A Universe of Stories Awaits"</h3>
+
+<body>
+    <div id="login-form" class="form-container">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <div class="toggle-btn" onclick="toggleForms()">Don't have an account? Sign up</div>
+    </div>
+
+    <div id="signup-form" class="form-container">
+        <h2>Signup</h2>
+        <input type="text" id="signup-username" placeholder="Username" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <button onclick="signup()">Signup</button>
+        <div class="toggle-btn" onclick="toggleForms()">Already have an account? Login</div>
+    </div>
+    
+
+    <script>
+        document.getElementById('login-form').style.display = 'block';
+
+        const users = {};
+
+        function toggleForms() {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            if (loginForm.style.display === 'block') {
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+            } else {
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+            }
+        }
+
+        function signup() {
+            const username = document.getElementById('signup-username').value;
+            const password = document.getElementById('signup-password').value;
+           // const email = document.getElementById('signup-email').value;
+
+            if (username && password) {
+                users[username] = password;
+                alert('Signup successful! Please login.');
+                toggleForms();
+            } else {
+                alert('Please enter a valid username and password.');
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            if (users[username] && users[username] === password) {
+                window.location.href = "home.html"; // Redirects to another page
+                
+            } else {
+                alert('Invalid credentials, please try again.');
+            }
+        }
+    </script>
+
+</body>
+</html>
